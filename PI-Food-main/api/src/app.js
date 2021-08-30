@@ -27,7 +27,5 @@ server.use('/', routes);
 server.use(errorHandler);
 
 conn.sync({forse: true})
-.then(()=>{
-    
-})
+
 module.exports = server; 
