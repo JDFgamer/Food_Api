@@ -1,54 +1,40 @@
+require('dotenv').config();
 const { Router } = require('express');
-const {v4: uuidv4} = require('uuid');
-const { Recipe } = require('../db.js');
+const axios = require('axios');
+const {APIKEY} = process.env;
 
 
 
 const router = Router();
 
-router.get('/', (req, res,next) => {
-    return Recipe.findAll()
-        .then(recipes => res.send(recipes))
-        .catch((error) => next(error));
+router.get('/recipe', (req, res) => {
+    let {name} = req.query;
+    axios.get(`https://api.spoonacular.com/recipes/complexSearch?query=${name}&number=20&addRecipeInformation=true&apiKey=${APIKEY}&number=20`)
+    .then((resultado) => resultado.data)
+    .then((resultado) => res.send(resultado))
+    .catch(() => res.status(404).send("El nombre no existe o fue mal cargado"));
 })
 
-router.get('/:id', (req, res,next) => {
-    const id = req.params.id;
-    return Recipe.findByPk(id)
-        .then(recipe => res.send(recipe))
-        .catch((error) => next(error));
-})
 
-router.post('/', (req, res,next) => {
-    const recipe = req.body;
-    return Recipe.create({
-        ...recipe,
-        id: uuidv4(),
-        
+
+router.get('/:id', (req,res)=>{
+    let {id} = req.params
+    axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${APIKEY}`)
+    .then(result => result.data)
+    .then(result =>{
+        res.send(result)
     })
-        .then((recipes) => res.send(recipes))
-        .catch((error) => next(error));
+    .catch(()=>{res.send("No existe La id o fue borrada")})
 })
 
-router.put('/:id', (req, res,next) => {
-    const id = req.params.id;
-    const recipe = req.body;
-    return Recipe.update(recipe, {
-        where: { id,
-        }
-    }).then((updateRecipe)=>{
-        res.send(updateRecipe)
-    }).catch((error) => next(error));
+router.get('/recipe/:diet', (req, res) => {
+    let {diet} = req.params;
+    let {name} = req.query;
+    axios.get(`https://api.spoonacular.com/recipes/complexSearch?query=${name}&number=20&addRecipeInformation=true&apiKey=${APIKEY}/${diet}`)
+    .then((resultado) => resultado.data)
+    .then((resultado) => res.send(resultado))
+    .catch(() => res.status(404).send("El nombre no existe o fue mal cargado"));
 })
 
-router.delete('/:id', (req, res, next) => {
-    const id = req.params.id;
-    return Recipe.destroy({
-        where: { id,
-        }
-    }).then(()=>{
-        res.sendStatus(200)
-    }).catch((error) => next(error));
-})
 
 module.exports = router;
