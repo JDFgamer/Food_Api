@@ -3,7 +3,6 @@ const axios = require('axios');
 const { APIKEY } = process.env;
 const { v4: uuidv4 } = require('uuid');
 const { Recipe, Diet } = require('../db.js');
-const { Op } = require('sequelize');
 
 
 async function APIcall(){
@@ -53,20 +52,20 @@ async function getAllRecipes(req, res, next) {
       next(err);
     }
   } else {
-    const query = name.toLowerCase();
+    const query = name.toLowerCase() ;
     try {
       const requiredInfo = await APIcall()
 
-      const filteredRecipeApi = requiredInfo.filter((recipe) =>
-        recipe.title.toLowerCase().includes(query)
+      const filteredRecipeApi = requiredInfo.filter((s) =>{
+        if(s.title.toLowerCase().includes(query)){
+          return s
+        }}
       );
 
       const recipeBD = await Recipe.findAll({
         where: {
-          title: {
-            [Op.like]: `%${query}`,
-          },
-        },
+          title:`${query}`
+         },
         include: {
           model: Diet,
           attributes: ["name"],
@@ -86,7 +85,36 @@ async function getAllRecipes(req, res, next) {
   }
 }
 
+async function postRecipe (req, res,next) {
+  let {titles,
+      image,
+      description,
+      servings,
+      steps,
+      dieta } = req.body;
+ if (!titles || !description){
+    return res.status(404).send("Se necesita nombre y descripsion")
+ }
+  try{
+      const recipeNew = await Recipe.create({
+      titles,
+      image,
+      description,
+      servings,
+      steps,
+      id: uuidv4(),
+  })
+  res.send("Creaste una receta papu ! ")
+}
+catch {error => next(error)
+}
+  /* let dietDb= await Dieta.findAll(dieta)
+  
+    recipeNew.addDieta(dietDb) */
+    
+}
 
 
 
-module.exports = {getAllRecipes}
+
+module.exports = {getAllRecipes, postRecipe}

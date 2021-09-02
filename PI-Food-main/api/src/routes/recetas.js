@@ -1,13 +1,8 @@
 require('dotenv').config();
 const { Router } = require('express');
-const {getAllRecipes} = require('../controllers');
+const {getAllRecipes, postRecipe} = require('../controllers');
 const axios = require('axios');
 const { APIKEY } = process.env;
-const { v4: uuidv4 } = require('uuid')
-const {Recipe, Dieta} = require('../db.js')
-
-
-
 
 
 const router = Router();
@@ -36,36 +31,7 @@ router.get('/types/:diet', (req, res) => {
 })
  
 
- router.post('/recipe', async (req, res,next) => {
-    let {name,
-        imagen,
-        description,
-        author,
-        pasoapaso,
-        cantidad,
-        dieta } = req.body;
-   if (!name || !description){
-      return res.status(404).send("Se necesita nombre y descripsion")
-   }
-    try{
-        const recipeNew = await Recipe.create({
-        name,
-        imagen,
-        description,
-        author,
-        pasoapaso,
-        cantidad,
-        id: uuidv4(),
-    })
-    res.send("Creaste una receta papu ! ")
-}
-catch {error => next(error)
-}
-    /* let dietDb= await Dieta.findAll(dieta)
-    
-      recipeNew.addDieta(dietDb) */
-      
-})
+ router.post('/recipe', postRecipe)
  
 
 
