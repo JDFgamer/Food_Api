@@ -4,7 +4,7 @@ const morgan = require('morgan');
 const routes = require('./routes/index.js');
 const errorHandler = require('./utils/middlewares/errorHandler.js');
 const setHeader = require('./utils/middlewares/setHeader.js');
-const {conn} = require('./db.js');
+
 
 
 require('./db.js');
@@ -26,6 +26,6 @@ server.use('/', routes);
 // Error catching endware.
 server.use(errorHandler);
 
-conn.sync({forse: true})
+
 
 module.exports = server; 
