@@ -3,6 +3,7 @@ const axios = require('axios');
 const { APIKEY } = process.env;
 const { v4: uuidv4 } = require('uuid');
 const { Recipe, Diet } = require('../db.js');
+const {Op} = require('sequelize')
 
 
 async function APIcall(){
@@ -32,6 +33,8 @@ async function APIcall(){
     }
     catch{e=>console.log(e)}
 }
+
+
 async function getAllRecipes(req, res, next) {
   const { name } = req.query;
   if (!name) {
@@ -85,36 +88,74 @@ async function getAllRecipes(req, res, next) {
   }
 }
 
+async function getSerchByID(req, res, next) {
+  const { id } = req.params;
+  
+    try {
+      const requiredInfo = await APIcall()
+
+      const filteredRecipeApi = requiredInfo.filter((s) =>{
+        if(s.id === id){
+          return s
+        }}
+      );
+
+       const recipeBD = await Recipe.findAll({
+        where: {
+          id:{[Op.eq]:`${id}`} 
+         },
+        include: {
+          model: Diet,
+          attributes: ["name"],
+          through: {
+            attributes: [],
+          },
+        },
+      });
+
+      const response = await Promise.all([recipeBD, filteredRecipeApi]); 
+
+      return res.send(response);
+
+    } catch {
+      (err) => next(err);
+    }
+}
+
 async function postRecipe (req, res,next) {
   let {titles,
       image,
       description,
       servings,
       steps,
-      dieta } = req.body;
+      diets } = req.body;
  if (!titles || !description){
     return res.status(404).send("Se necesita nombre y descripsion")
  }
   try{
-      const recipeNew = await Recipe.create({
+      const newRecipe = await Recipe.create({
       titles,
-      image,
+      image: image || "https://mir-s3-cdn-cf.behance.net/project_modules/fs/b52cad60636009.5a5478f0990fa.gif",
       description,
       servings,
       steps,
       id: uuidv4(),
-  })
+  });
+  if(diets.length){
+    diets.map(async (diet)=>{
+      try{
+        let dietdb = await Diet.findOne({where:{name: diet}})
+        newRecipe.addDiet(dietdb);
+      }catch{err => next(err)}
+    })
+  }
   res.send("Creaste una receta papu ! ")
 }
 catch {error => next(error)
 }
-  /* let dietDb= await Dieta.findAll(dieta)
-  
-    recipeNew.addDieta(dietDb) */
-    
 }
 
 
 
 
-module.exports = {getAllRecipes, postRecipe}
+module.exports = {getAllRecipes, postRecipe, getSerchByID}

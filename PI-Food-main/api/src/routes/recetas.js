@@ -1,6 +1,6 @@
 require('dotenv').config();
 const { Router } = require('express');
-const {getAllRecipes, postRecipe} = require('../controllers');
+const {getAllRecipes, postRecipe, getSerchByID} = require('../controllers');
 const axios = require('axios');
 const { APIKEY } = process.env;
 
@@ -9,17 +9,7 @@ const router = Router();
 
  router.get('/recipe', getAllRecipes)
 
-
-
-router.get('/:id', (req, res) => {
-    let { id } = req.params
-    axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${APIKEY}`)
-        .then(result => result.data)
-        .then(result => {
-            res.send(result)
-        })
-        .catch(() => { res.send("No existe La id o fue borrada") })
-})
+router.get('/:id', getSerchByID)
 
 router.get('/types/:diet', (req, res) => {
     let { diet } = req.params;
