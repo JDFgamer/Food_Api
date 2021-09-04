@@ -3,7 +3,7 @@ const axios = require('axios');
 const { API_KEY } = process.env;
 const { v4: uuidv4 } = require('uuid');
 const { Recipe, Diet } = require('../db.js');
-const {Sequelize} = require('sequelize')
+const {Sequelize} = require('sequelize');
 
 
 async function APIcall(){
@@ -65,13 +65,13 @@ async function getAllRecipes(req, res) {
           return s
         }
        } 
-       
+
       );
 
       const recipeBD = await Recipe.findAll({
         where: {
-          title:{[Sequelize.Op.ilike]:`%${query}%`}
-         },
+          titles:{[Sequelize.Op.like]:`%${query}%`}
+        },
         include: {
           model: Diet,
           attributes: ["name"],
@@ -153,20 +153,7 @@ catch(err) {
 }
 }
 
-async function postDiet (req, res) {             
-  const name = req.body.name
-
-  Diet.create({
-    name
-  })
-    .then(diet => {
-      res.status(200).send(diet)
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-}
 
 
 
-module.exports = {getAllRecipes, postRecipe, getSerchByID,postDiet}
+module.exports = {getAllRecipes, postRecipe, getSerchByID}
