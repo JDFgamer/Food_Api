@@ -56,7 +56,7 @@ async function getAllRecipes(req, res) {
       console.error(err);
   }
   } else {
-    const query = name.toLowerCase() ;
+    const query = name.toLowerCase();
     try {
       const requiredInfo = await APIcall()
 
@@ -65,12 +65,11 @@ async function getAllRecipes(req, res) {
           return s
         }
        } 
-
       );
 
       const recipeBD = await Recipe.findAll({
         where: {
-          titles:{[Sequelize.Op.like]:`%${query}%`}
+          title:{[Sequelize.Op.like]:`%${query}%`}
         },
         include: {
           model: Diet,
@@ -116,22 +115,24 @@ async function getSerchByID(req, res) {
 }
 
 async function postRecipe (req, res) {
-  let {titles,
-      image,
+  let {title,
       description,
+      healthyness,
       servings,
       steps,
+      score,
       diets } = req.body;
- if (!titles || !description){
+ if (!title || !description){
     return res.status(404).send("Se necesita nombre y descripsion")
  }
   try{
       const newRecipe = await Recipe.create({
-      titles,
-      image: image,
+      title,
       description,
+      healthyness,
       servings,
       steps,
+      score,
       id: uuidv4(),
   });
   if(diets){
@@ -145,7 +146,7 @@ async function postRecipe (req, res) {
     )
     newRecipe.addDiet(dietDb)
   }
-  res.send("Creaste una receta papu ! ")
+  res.send("You created a new recipe :D")
 }
 catch(err) {
   res.json({err})

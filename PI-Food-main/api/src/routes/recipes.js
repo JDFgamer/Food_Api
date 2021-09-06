@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const {getAllRecipes, getSerchByID} = require('../controllers');
+const {getAllRecipes, getSerchByID,postRecipe} = require('../controllers');
 
 
 
@@ -9,6 +9,7 @@ router.get('/', getAllRecipes)
 
 router.get('/:id', getSerchByID)
 
+router.post('/', postRecipe)
 
  
 

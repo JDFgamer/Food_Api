@@ -9,12 +9,9 @@ module.exports = (sequelize) => {
       allowNull: false,
       primaryKey: true,
     },
-    titles: {
+    title: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
-    image: {
-      type: DataTypes.STRING,
     },
     description: {
       type: DataTypes.STRING,
@@ -26,6 +23,12 @@ module.exports = (sequelize) => {
     steps: {
       type: DataTypes.TEXT,
     },
+    healthyness:{
+      type: DataTypes.INTEGER
+    },
+    score:{
+      type: DataTypes.INTEGER
+    }
     
   },
   {
