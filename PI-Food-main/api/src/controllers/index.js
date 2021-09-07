@@ -9,7 +9,7 @@ const {Sequelize} = require('sequelize');
 async function APIcall(){
     try{
     const recipeApi = await axios.get(
-     `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`
+     `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=40`
       );
       const requiredInfo = recipeApi.data.results.map((recipe) => {
         return {
