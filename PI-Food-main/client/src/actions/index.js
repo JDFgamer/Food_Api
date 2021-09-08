@@ -33,17 +33,18 @@ export function getRecipes() {
 // }
 
 
-// export function getRecipeDetail(id) {
-//     return async function (dispatch) {
-//         return axios.get(`http://localhost:3001/recipe/${id}`)
-//             .then((response) => {
-//                 dispatch({
-//                     type: GET_RECIPE_DETAIL,
-//                     payload: response.data
-//                 })
-//             })
-//     }
-// }
+export function getRecipeDetail(id) {
+    return async function (dispatch) {
+        return axios.get(`http://localhost:3001/recipe/${id}`)
+        
+            .then((response) => {
+                dispatch({
+                    type: GET_RECIPE_DETAIL,
+                    payload: response.data
+                })
+            })
+    }
+}
 
 
 // export function getByDiet() {

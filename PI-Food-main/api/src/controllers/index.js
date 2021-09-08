@@ -102,7 +102,15 @@ async function getSerchByID(req, res) {
       
       );
        
-        const recipeBD = await Recipe.findByPk(uuidv4(id));
+        const recipeBD = await Recipe.findByPk(id,{
+          include: {
+          model: Diet,
+          attributes: ["name"],
+          through: {
+            attributes: [],
+          },
+
+        }});
       
      
 
@@ -116,19 +124,19 @@ async function getSerchByID(req, res) {
 
 async function postRecipe (req, res) {
   let {title,
-      description,
+      summary,
       healthyness,
       servings,
       steps,
       score,
       diets } = req.body;
- if (!title || !description){
+ if (!title || !summary){
     return res.status(404).send("Se necesita nombre y descripsion")
  }
   try{
       const newRecipe = await Recipe.create({
       title,
-      description,
+      summary,
       healthyness,
       servings,
       steps,

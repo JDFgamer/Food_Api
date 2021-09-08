@@ -5,9 +5,10 @@ import RecipeCard from '../recipeCard/recipecard';
 function RecipesCards({ recipe }) {
 
   return (
+    <>
     <div>
 
-      {console.log(recipe) }
+      
       {recipe.map((recipe) => (
          recipe.map((recipe => (
         <RecipeCard
@@ -21,6 +22,8 @@ function RecipesCards({ recipe }) {
         )))
       ))}
     </div>
+    <div></div>
+    </>
   );
 };
 

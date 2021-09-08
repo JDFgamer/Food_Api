@@ -5,6 +5,7 @@ import NavBar from "../navBar/Navbar";
 import RecipesCards from "../RecipesCards/recipescards";
 
 
+
 function RecipesHome({ recipe, getRecipes }) {
 
     useEffect(() => {
@@ -16,6 +17,7 @@ function RecipesHome({ recipe, getRecipes }) {
         <div >
             <NavBar />
             <div>
+                <div><h1>Recipes for your table</h1></div>
                 <RecipesCards
                       recipe = {recipe}     
                         />
