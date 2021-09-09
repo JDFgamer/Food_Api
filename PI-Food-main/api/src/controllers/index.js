@@ -49,7 +49,7 @@ async function getAllRecipes(req, res) {
           },
         },
       });
-      const response = await Promise.all([recipeBD, requiredInfo]);
+      const response = await Promise.all([recipeBD.concat(requiredInfo)]);
       return res.send(response);
     } catch(err) {
       res.json({err})
@@ -82,7 +82,7 @@ async function getAllRecipes(req, res) {
 
       /* const response = await Promise.all([recipeBD, filteredRecipeApi]); */
 
-      return res.send(await Promise.all([recipeBD, filteredRecipeApi]));
+      return res.send(await Promise.all([recipeBD.concat(filteredRecipeApi)]));
 
     } catch(err) {
       res.json({err})
@@ -101,7 +101,7 @@ async function getSerchByID(req, res) {
       const filteredRecipeApi = requiredInfo.filter((s) => (s.id === newId)
       
       );
-       
+       if(id.length > 6){
         const recipeBD = await Recipe.findByPk(id,{
           include: {
           model: Diet,
@@ -111,11 +111,10 @@ async function getSerchByID(req, res) {
           },
 
         }});
-      
-     
-
-      return res.json(await Promise.all([recipeBD, filteredRecipeApi]));
-
+        return res.json(await Promise.all([recipeBD]));
+       }else{
+      return res.json(await Promise.all([filteredRecipeApi]))
+       }
     } catch(err) {
         res.json({err})
         console.error(err);
