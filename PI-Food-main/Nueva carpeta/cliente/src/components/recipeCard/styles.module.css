@@ -1,0 +1,50 @@
+:root{
+    --white-text: rgba(10, 15, 255, 0.795);
+}
+.background-top-row{
+    background-color: rgba(1, 127, 231, 0.555);
+    backdrop-filter: blur(.4rem);
+}
+
+*{
+    padding:0;
+    margin:0;
+    text-decoration:none;
+    box-sizing: border-box;
+    border: none;
+}
+body{
+    font-family: Arial, Helvetica, sans-serif;
+ /*    background: url('../../image/FondoRecipesCard.jpg'); */
+    background-size: cover;
+}
+
+.container{
+    display:flex;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+}
+.card{
+    border-radius: 1rem ;
+    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    margin: 1.5rem;
+    overflow: hidden;
+    backdrop-filter: blur(1rem);
+    background-color:rgba(255, 255, 255, 0.060);
+    border: .1rem solid rgba(255, 255, 255, 0.060);
+    color: var(--white-text)
+
+}
+
+.cardh4{
+    letter-spacing: .1rem;
+    text-transform: uppercase;
+}
+
+.cardh5{
+    letter-spacing: .1rem;
+    margin: 1rem 0;
+}

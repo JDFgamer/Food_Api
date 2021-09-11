@@ -6,10 +6,10 @@ import RecipesCards from "../RecipesCards/recipescards";
 
 
 
-function RecipesHome({ recipe, getRecipes }) {
+function RecipesHome({ recipe, Recipesget }) {
 
     useEffect(() => {
-        getRecipes()
+        Recipesget()
     }, [])
 
 
@@ -18,9 +18,7 @@ function RecipesHome({ recipe, getRecipes }) {
             <NavBar />
             <div>
                 <div><h1>Recipes for your table</h1></div>
-                <RecipesCards
-                      recipe = {recipe}     
-                        />
+                <RecipesCards recipe = {recipe}/>
                     
 
             </div>
@@ -31,13 +29,13 @@ function RecipesHome({ recipe, getRecipes }) {
 const mapStateToProps = (state) => {
 
     return {
-        recipe: state.recipe
+        recipe: state.recipes
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getRecipes: () => dispatch(getRecipes()),
+        Recipesget: () => dispatch(getRecipes()),
     }
 }
 

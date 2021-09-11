@@ -4,6 +4,8 @@ import './App.css';
 import RecipesHome from "./components/recipesHome/recipeshome";
 import RecipesDetail from "./components/recipesdetails/recipesdetails"
 import Home from "./components/Home/home";
+import createRecipe from "./components/createRecipe/createrecipe";
+import RecipeName from "./components/RecipesName/recipename";
 
 
 function App() {
@@ -11,6 +13,7 @@ function App() {
    
       <Router>
       <Route exact path="/" component={Home} />
+      <Route exact path="/recipe" component={createRecipe} />
       <Route exact path="/home" component={RecipesHome} />
       <Route exact path="/recipe/:id"
             render={(match) => (
@@ -18,7 +21,8 @@ function App() {
                <RecipesDetail match={match}/>
               </React.Fragment>
             )}
-          ></Route>
+          />
+        <Route path="/recipename" component={RecipeName} />
       </Router>  
       
       );

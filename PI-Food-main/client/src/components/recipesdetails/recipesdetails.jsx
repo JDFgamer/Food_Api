@@ -10,19 +10,19 @@ function RecipeDetail({ match, recipe, getRecipebyid }) {
         getRecipebyid(match.match.params.id)
     },[])
     
-
+    console.log(recipe)
     return (
         <div >
             <Link to={'/home'}>Home </Link>
-
-         {recipe.flat().map((a)=> {if(a !== null) 
-         return  <div>
+        
+         {recipe.map((a, i)=> { 
+         return  <div key= {i}>
          <h2>{a.title} </h2>
          <h4>Código de receta: {a.id}</h4>
          <img src={a.image} /> 
          <p>healthyness: {a.healthyness}</p>
-         <p>Diets: {a.diets.map((b) => {
-             return b.name
+         <p>Diets: {a.diets.map((diet) => {
+             return diet.name
          }).join(', ')}</p> 
          <p>score: {a.score}</p>
          <p>steps: {a.steps}</p>

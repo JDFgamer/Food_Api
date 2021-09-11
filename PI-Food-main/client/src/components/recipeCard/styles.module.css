@@ -1,5 +1,5 @@
 :root{
-    --white-text: #fff;
+    --white-text: rgba(10, 15, 255, 0.795);
 }
 .background-top-row{
     background-color: rgba(1, 127, 231, 0.555);
