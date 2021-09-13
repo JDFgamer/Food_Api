@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { NavLink} from 'react-router-dom';
 import { connect } from 'react-redux';
-import './Navbar.css';
+import styles from './Navbar.module.css';
 import { getRecipebyName } from '../../actions/index';
 import RecipeOrder from '../filters/recipeorder'
 
@@ -26,17 +26,18 @@ function handleClik() {
 
 
     return (
-      <nav >
-        <div >
-          <NavLink to="/home" >Home</NavLink>
-          <NavLink to="/recipe">Create a New Recipe</NavLink>
-          <div>
-          <input value={ActualState} type='text' placeholder='buscador' onChange={handleChange}/>
-          <NavLink to='/recipename'><button onClick={handleClik}>Search</button></NavLink>
+      <nav className={styles.navbar}>
+        <div className={styles.navbar2} >
+         <div id={styles.home} > <NavLink to="/home"><button className={styles.btn}><div  className={styles.noselect}>Home</div></button></NavLink><div className={styles.circle}> </div></div>
+         <div id ={styles.create_recipe}> <NavLink to="/recipe"><button className={styles.btn_create}><div  className={styles.noselect} >Create a New Recipe</div></button> </NavLink><div className={styles.circle}> </div></div>
+
+          <div className={styles.inputs}><RecipeOrder/> </div>
+
+          <div className={styles.navbar2}>
+          <input className={styles.inputbus} value={ActualState} type='text' placeholder='buscador' onChange={handleChange}/>
+          <div id ={styles.create_bus}><NavLink to='/recipename'><button className={styles.btn}  onClick={handleClik}> <div className={styles.noselect}> Search</div></button></NavLink> <div className={styles.circle}> </div> </div>
           </div>
-          <div>
-        <RecipeOrder/>
-          </div>
+          
 
         </div>
 

@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { orderRecipes, getRecipes,filterRecipes,getByDiet } from '../../actions/index';
 import { connect } from 'react-redux'
+import styles from '../navBar/Navbar.module.css';
+import stylesSelector from './selector.module.css'
 
 
 function RecipesOrderFilters({orderrecipes,OrderRecipesAZ,diets,getAllrecipes,filterRecipesDiet,getByDiet }) {
@@ -38,27 +40,27 @@ function RecipesOrderFilters({orderrecipes,OrderRecipesAZ,diets,getAllrecipes,fi
     console.log(orderrecipes,diets)
 
     return (
-        <div >
-            <div>
+        <div className={styles.inputsfilter} >
+            <div className={stylesSelector.option}>
 
-                <select  onChange={handleTitle}>
-                    <option label='order by name' value='Title'></option>
+                <select className={stylesSelector.selector} onChange={handleTitle}>
+                    <option  label='order by name' value='Title'></option>
                     <option value='Ascendent'>Ascendente</option>
                     <option value='Descendent'>Descendente</option>
                 </select>
 
             </div>
-            <div>
+            <div className={stylesSelector.option}>
 
-                <select  onChange={handleScore}>
-                    <option label='order by score' value='score'></option>
+                <select className={stylesSelector.selector}  onChange={handleScore}>
+                    <option   label='order by score' value='score'></option>
                     <option value='Ascendent' >Ascendente</option>
                     <option value='Descendent' >Descendente</option>
                 </select>
 
             </div>
-            <div>
-                <select  onChange={handleFilterDiet}>
+            <div className={stylesSelector.option}>
+                <select className={stylesSelector.selector}  onChange={handleFilterDiet}>
                     <option key="-1" label='Filtered by diet' value='dieta'></option>
                     {diets.length ? diets.map((diets, i) => (
                         <option key={i} value={diets.name} label={diets.name}></option>
