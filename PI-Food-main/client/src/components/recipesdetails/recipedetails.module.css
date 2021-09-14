@@ -5,69 +5,50 @@
     justify-content: space-around;
     flex-wrap: wrap;
   }
-
 .card {
-    margin: 7% auto;
-    width: 300px;
+    margin: 3% auto;
+    width: 200px;
     height: 300px;
-    padding-bottom: 9%;
-    padding-top: 6%;
-    padding-left: 2%;
-    padding-right: 2%;
+    padding-bottom: 40%;
+    padding-top: 0,40%;
+    padding-left: 10%;
+    padding-right: 20%;
     box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);
     border-radius: 40px;
-    cursor: pointer;
     transition: 0.4s;
 }
 
-.card .card_image {
-    width: inherit;
-    height: inherit;
+#card_image{
     border-radius: 40px;
+    width: 400px;
 }
 
-.card .card_image img {
-    width: inherit;
-    height: inherit;
-    border-radius: 40px;
-    object-fit: cover;
-  }
 
-.card .card_title {
+#title{
     color: #fff;
     text-align: center;
-    border-radius: 0px 0px 40px 40px;
     font-family: 'Cookie', cursive;
     font-weight: bold;
-    font-size: 22px;
-    margin-top: -35%;
-    height: 60px;
-    margin-bottom: 10%;
+    font-size: 40px;
 }
 
-
-.card .card_h5{
+#id{
     color: #fff;
-    text-align: center;
-    border-radius: 0px 0px 40px 40px;
     font-family: 'Cookie', cursive;
     font-weight: bold;
-    font-size: 18px;
-    margin: 1%;
-    height: 12%;
+    font-size: 24px;
+
 }
 
-.card .card_score{
+
+.text{
     color: #fff;
     text-align: center;
-    border-radius: 0px 0px 40px 40px;
     font-family: 'Cookie', cursive;
     font-weight: bold;
     font-size: 20px;
-    margin-top: 15%;
-    height: 12%;
-    margin-bottom: 2%;
 }
+
 
 .btn {
     
@@ -88,7 +69,7 @@
     padding-bottom: 5px;
     padding-top: 5px;
     margin-top: 1%;
-    margin-left: 50%;
+    margin-left: 45%;
    
   }
 
@@ -126,3 +107,5 @@
     border-bottom: 2px solid #eee;
     
   }
+
+

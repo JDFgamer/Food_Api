@@ -16,3 +16,16 @@
     padding-left: 10px;
     padding-right: 10px;
 }
+
+#steps{
+    font-family: 'Cookie', cursive;
+    color: #fff;
+    background-color:  rgb(173, 101, 7);
+    border: none;
+    border-radius: 30px;
+    height: 40px;
+    min-width: 20px;
+    font-size: 17px;
+    align-items: center;
+    justify-content: center;
+}

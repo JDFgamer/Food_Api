@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { connect} from "react-redux";
-import { CreateRecipe, getRecipes,getByDiet } from "../../actions/index"
+import { connect } from "react-redux";
+import { CreateRecipe, getRecipes, getByDiet } from "../../actions/index"
 import { validate } from "../../utils"
+import styles from './createrecipe.module.css'
 
 
-function RecipeCreate({ recipes,diets, postcreaterecipe, getallrecipes,getByDiet }) {
+function RecipeCreate({ recipes, diets, postcreaterecipe, getallrecipes, getByDiet }) {
 
 
     const [input, setInput] = useState({
@@ -89,53 +90,59 @@ function RecipeCreate({ recipes,diets, postcreaterecipe, getallrecipes,getByDiet
 
 
     return (
-        <div>
-            <Link to="/home">home</Link>
-            <input type="text" name='title'
-                value={input.title} onChange={handleInputChange} placeholder='Title' />
-            {errors.title && (<p>{errors.title}</p>)}
+
+<div>
+    <Link to="/home"> <button id={styles.btn} ><div id={styles.noselect} > home </div></button><div id={styles.circle}></div>  </Link>
+        <div className={styles.card}>
+            <div className={styles.text}>Title</div>
+            <input className={styles.input} type="text" name='title' value={input.title} onChange={handleInputChange}  />
+            {errors.title && (<p className={styles.error} >{errors.title}</p>)}
             <form onSubmit={handleSubmit}>
 
                 <div>
-                    <input type="text" name="summary" value={input.summary} onChange={handleInputChange} placeholder='Summary' />
-                    {errors.summary && (<p>{errors.summary}</p>)}
+                <div className={styles.text}>Summary</div>
+                    <input className={styles.input} type="text" name="summary" value={input.summary} onChange={handleInputChange} /> 
+                    {errors.summary && (<p className={styles.error} >{errors.summary}</p>)}
                 </div>
 
                 <div>
-
-                    <input type="number" name="healthyness" value={input.healthyness} onChange={handleInputChange} placeholder='healthyness' />
-                    {errors.healthyness && (<p>{errors.healthyness}</p>)}
+                <div className={styles.text}>Healthyness</div>
+                    <input className={styles.input} type="number" name="healthyness" value={input.healthyness} onChange={handleInputChange}  />
+                    {errors.healthyness && (<p className={styles.error} >{errors.healthyness}</p>)}
                 </div>
 
                 <div>
-
-                    <input type="number" name="score" value={input.score} onChange={handleInputChange} placeholder='score' />
-                    {errors.score && (<p>{errors.score}</p>)}
+                <div className={styles.text}>Score</div>
+                    <input className={styles.input} type="number" name="score" value={input.score} onChange={handleInputChange}  />
+                    {errors.score && (<p className={styles.error} >{errors.score}</p>)}
                 </div>
 
                 <div>
-                    <input type="text" name="steps" value={input.steps} onChange={handleInputChange} placeholder='steps' />
-                    {errors.steps && (<p>{errors.steps}</p>)}
+                <div className={styles.text}>Steps</div>
+                    <input id={styles.steps} type="text" name="steps" value={input.steps} onChange={handleInputChange}  />
+                    {errors.steps && (<p className={styles.error} >{errors.steps}</p>)}
                 </div>
-
-                <select onChange={handleDietsSelection}>
+                
+                <div className={styles.text}>Diets</div>
+                <select id={styles.diets} onChange={handleDietsSelection}>
                     <option value=''>Select a diets</option>
                     {
-                        diets?.map((item,i) => {
+                        diets?.map((item, i) => {
                             return <option value={item.name} key={i} >{item.name}</option>;
                         })
                     }
                 </select>
-                <input type="text" name="diets" value={input.diets} onChange={onClickSubmit} placeholder='Diets' />
+                <input className={styles.input} type="text" name="diets" value={input.diets} onChange={onClickSubmit}  />
                 {errors.diets && (
                     <p>{errors.diets}</p>
                 )}
                 <input type="submit" value='Create a new recipe' />
             </form>
         </div>
-    
+        </div>
+
     )
-    
+
 }
 
 const mapStateToProps = (state) => {
@@ -149,7 +156,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         postcreaterecipe: (recipe) => dispatch(CreateRecipe(recipe)),
         getallrecipes: () => dispatch(getRecipes()),
-        getByDiet:()=>dispatch(getByDiet())
+        getByDiet: () => dispatch(getByDiet())
 
     }
 }

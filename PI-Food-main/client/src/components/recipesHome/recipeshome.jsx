@@ -3,6 +3,7 @@ import { connect } from "react-redux"
 import { getRecipes } from "../../actions";
 import NavBar from "../navBar/Navbar";
 import RecipesCards from "../RecipesCards/recipescards";
+import styles from "./recipehome.module.css";
 
 
 
@@ -17,7 +18,7 @@ function RecipesHome({ recipe, Recipesget }) {
         <div >
             <NavBar />
             <div>
-                <div><h1>Recipes for your table</h1></div>
+                <div className={styles.title}>Recipes for your table</div>
                 <RecipesCards recipe = {recipe}/>
                     
 

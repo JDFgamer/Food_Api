@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from 'react';
 import { connect } from 'react-redux';
 import RecipeCard from '../recipeCard/recipecard';
+import styles from './recipecards.module.css'
 
 function RecipesCards({ recipe }) {
   const [actualStaterecipes, setActualStaterecipes] = useState([])
@@ -25,18 +26,17 @@ useEffect(() => {
   return (
     <>
     <div>
-      <div >
-                    <button  onClick={() => showPages(currentPage > 1 ?
-                        currentPage - 1 : currentPage)}>{'☚'}</button>
-                    <div>
-                        
-                            
-                        
-                    </div>
-                    <button onClick={() => showPages(currentPage < pages ?
-                        currentPage + 1 : currentPage)}>{`☛`}</button>
+      <div>
+                    <div id={styles.prev} >
+                    <button className={styles.btn}  onClick={() => showPages(currentPage > 1 ?
+                        currentPage - 1 : currentPage)} > <div className={styles.noselect}> {'Prev'} </div>  </button>  <div className={styles.circle}></div>
+                   </div>
+                   <div id={styles.next} >
+                    <button className={styles.btn} onClick={() => showPages(currentPage < pages ?
+                        currentPage + 1 : currentPage)}><div className={styles.noselect}> {'Next'} </div>  </button>  <div className={styles.circle}></div>
+                        </div>
                 </div>
-                {actualStaterecipes && actualStaterecipes.map((recipe, i) => (
+                {actualStaterecipes && actualStaterecipes.map((recipe) => (
 
       
          
@@ -51,6 +51,19 @@ useEffect(() => {
         
         ))
       }
+      <div>
+                    <div id={styles.prev} >
+                    <button className={styles.btn}  onClick={() => showPages(currentPage > 1 ?
+                        currentPage - 1 : currentPage)} > <div className={styles.noselect}> {'Prev'} </div>  </button>  <div className={styles.circle}></div>
+                   </div>
+                   <div id={styles.next} >
+                    <button className={styles.btn} onClick={() => showPages(currentPage < pages ?
+                        currentPage + 1 : currentPage)}><div className={styles.noselect}> {'Next'} </div>  </button>  <div className={styles.circle}></div>
+                        </div>
+                </div>
+      
+
+
     </div>
     <div></div>
     </>
