@@ -14,7 +14,7 @@ import { connect } from 'react-redux';
              <div key= {recipe.id}>
              <h2>{recipe.title} </h2>
              <h4>Código de receta: {recipe.id}</h4>
-             <img src={recipe.image} alt={"Imagen no encontrada"} /> 
+             <img src={recipe.image || 'https://estaticos.muyinteresante.es/uploads/images/article/55365cd73787b2187a1f0790/portada.jpg' } alt='imagen not found' /> 
              <p>healthyness: {recipe.healthyness}</p>
              <p>Diets: {recipe.diets.map((b) => {
                  return b.name

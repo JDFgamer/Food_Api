@@ -74,3 +74,12 @@
     text-align: justify; 
     
   }
+
+.card{
+  justify-content:center;
+  max-width: 20%;
+  display: inline-block;
+  margin-left: 10%;
+  margin-right:5%;
+  margin-bottom: 5%;
+}

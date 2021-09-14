@@ -128,3 +128,26 @@
     border-bottom: 2px solid #eee;
     
   }
+
+  #input{
+    
+    background: rgba(134, 77, 2, 0.801);
+    height: 50px;
+    min-width: 150px;
+    border: none;
+    border-radius: 10px;
+    color: #eee;
+    font-size: 23px;
+    font-family: 'Cookie', cursive;
+    position: relative;
+    transition: 1s;
+    -webkit-tap-highlight-color: transparent;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding-bottom: 30px;
+    padding-top: 5px;
+    margin-top: 5%;
+    margin-left: 45%;
+   
+  }

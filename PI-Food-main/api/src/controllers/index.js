@@ -9,7 +9,7 @@ const {Sequelize} = require('sequelize');
 async function APIcall(){
     try{
     const recipeApi = await axios.get(
-     `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=40`
+     `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`
       );
       const requiredInfo = recipeApi.data.results.map((recipe) => {
         return {
@@ -17,7 +17,7 @@ async function APIcall(){
           diets: recipe.diets.map((diet) => {
             return { name: diet };
           }),
-          healthyness: recipe.healthScore,
+          healthyness: parseInt(recipe.healthScore),
           summary: recipe.summary,
           image: recipe.image,
           id: recipe.id,
@@ -79,7 +79,7 @@ async function getAllRecipes(req, res) {
         },
       });
 
-      /* const response = await Promise.all([recipeBD, filteredRecipeApi]); */
+      
 
       return res.send(await Promise.all(recipeBD.concat(filteredRecipeApi)));
 
@@ -124,7 +124,6 @@ async function postRecipe (req, res) {
   let {title,
       summary,
       healthyness,
-      servings,
       steps,
       score,
       diets } = req.body;
@@ -136,7 +135,6 @@ async function postRecipe (req, res) {
       title,
       summary,
       healthyness,
-      servings,
       steps,
       score,
       id: uuidv4(),

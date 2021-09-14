@@ -136,7 +136,7 @@ function RecipeCreate({ recipes, diets, postcreaterecipe, getallrecipes, getByDi
                 {errors.diets && (
                     <p>{errors.diets}</p>
                 )}
-                <input type="submit" value='Create a new recipe' />
+                <input id={styles.input} type="submit" value='Create a new recipe' />
             </form>
         </div>
         </div>

@@ -6,47 +6,25 @@
     flex-wrap: wrap;
   }
 .card {
-    margin: 3% auto;
-    width: 200px;
+    margin: 2% 25% 12% 12%;
+    width: 70%;
     height: 300px;
-    padding-bottom: 40%;
-    padding-top: 0,40%;
-    padding-left: 10%;
-    padding-right: 20%;
     box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);
     border-radius: 40px;
     transition: 0.4s;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    padding-bottom: 45%;
+    font-size: 20px;
+    font-family: 'Cookie', cursive;
+    position: relative;
+   
 }
 
 #card_image{
     border-radius: 40px;
     width: 400px;
-}
-
-
-#title{
-    color: #fff;
-    text-align: center;
-    font-family: 'Cookie', cursive;
-    font-weight: bold;
-    font-size: 40px;
-}
-
-#id{
-    color: #fff;
-    font-family: 'Cookie', cursive;
-    font-weight: bold;
-    font-size: 24px;
-
-}
-
-
-.text{
-    color: #fff;
-    text-align: center;
-    font-family: 'Cookie', cursive;
-    font-weight: bold;
-    font-size: 20px;
 }
 
 

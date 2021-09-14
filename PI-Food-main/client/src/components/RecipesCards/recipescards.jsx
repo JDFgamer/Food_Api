@@ -39,7 +39,7 @@ useEffect(() => {
                 {actualStaterecipes && actualStaterecipes.map((recipe) => (
 
       
-         
+         <div className={styles.card}>
         <RecipeCard
           key={recipe.id}
           image={recipe.image}
@@ -48,7 +48,7 @@ useEffect(() => {
           score ={recipe.score}
           diets= {recipe.diets.map((e) => {return e.name }).join(", ")}
         />
-        
+        </div>
         ))
       }
       <div>

@@ -1,5 +1,4 @@
 const {Diet} = require('../db');
-const {Sequelize} = require('sequelize')
 
 const diets= [
     {name: "gluten free"},
@@ -35,22 +34,6 @@ async function getDiets (req, res) {
       }
 }
 
-async function getDiet (req, res){
-    const {name} = req.params
-    const query = name.toLowerCase()
-    try{
-    const recipeBD = await Diet.findOne({
-        where: {
-          name:{[Sequelize.Op.like]:`%${query}%`}
-        },
-      });
 
-      return res.send(recipeBD)
-    }
-      catch (err){ 
-          res.json({err})
-          console.error(err);
-      }
-}
 
-module.exports = {getDiets,getDiet};
+module.exports = {getDiets};
