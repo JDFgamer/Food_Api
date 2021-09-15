@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import React from 'react';
 import styles from './styles.module.css';
 
-export function RecipeCard({ title,diets,id,image,score }) {
+function RecipeCard({ title,diets,id,image,score }) {
   return (
     <div className={styles.list_card}>
         <div className={styles.card}>

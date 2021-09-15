@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux"
 import { getRecipes } from "../../actions";
 import NavBar from "../navBar/Navbar";
@@ -8,6 +8,7 @@ import styles from "./recipehome.module.css";
 
 
 function RecipesHome({ recipe, Recipesget }) {
+
 
     useEffect(() => {
         Recipesget()
@@ -19,9 +20,7 @@ function RecipesHome({ recipe, Recipesget }) {
             <NavBar />
             <div>
                 <div className={styles.title}>Recipes for your table</div>
-                <RecipesCards recipe = {recipe}/>
-                    
-
+                <RecipesCards recipe={recipe} />
             </div>
         </div>
     )

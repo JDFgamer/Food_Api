@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { CreateRecipe, getRecipes, getByDiet } from "../../actions/index"
 import { validate } from "../../utils"
@@ -25,6 +25,7 @@ function RecipeCreate({ recipes, diets, postcreaterecipe, getallrecipes, getByDi
         score: "",
         diets: "",
     })
+    const history = useHistory()
 
     useEffect(() => {
         getallrecipes()
@@ -77,7 +78,9 @@ function RecipeCreate({ recipes, diets, postcreaterecipe, getallrecipes, getByDi
     function handleSubmit(event) {
         event.preventDefault();
         postcreaterecipe(input)
+        alert('The new recipe has been created')
         getallrecipes()
+        setTimeout( () => {history.push('/home')},1500)
     }
 
     function onClickSubmit() {

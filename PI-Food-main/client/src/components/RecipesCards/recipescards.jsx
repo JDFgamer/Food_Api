@@ -3,29 +3,32 @@ import { connect } from 'react-redux';
 import RecipeCard from '../recipeCard/recipecard';
 import styles from './recipecards.module.css'
 
+
+
 function RecipesCards({ recipe }) {
-  const [actualStaterecipes, setActualStaterecipes] = useState([])
+
   const recipePerPage = 9
-    const pages = Math.ceil(recipe.length / recipePerPage)
-    
-    const [currentPage, setCurrentPage] = useState(1)
+  const pages = Math.ceil(recipe.length / recipePerPage)
 
-
+  const [actualStaterecipes, setActualStaterecipes] = useState([])
+  const [currentPage, setCurrentPage] = useState(1)
   const showPages = (pageNum) => {
     const index = pageNum * recipePerPage + 1;
     setActualStaterecipes(recipe.slice(index - recipePerPage - 1, index - 1));
     setCurrentPage(pageNum)
 
 }
+
 useEffect(() => {
 
   showPages(1)
-
 }, [recipe])
+
 
   return (
     <>
     <div>
+      
       <div>
                     <div id={styles.prev} >
                     <button className={styles.btn}  onClick={() => showPages(currentPage > 1 ?
@@ -65,8 +68,10 @@ useEffect(() => {
 
 
     </div>
-    <div></div>
+    
     </>
+    
+
   );
 };
 
